@@ -56,7 +56,6 @@ const Home = () => {
 	const [getPosts, { loading, data }] = useLazyQuery(POSTS_QUERY);
 	const [signInWithAuth0, { loading: signInLoading }] =
 		useMutation(SIGNIN_MUTATION);
-	console.log('posts', data);
 
 	React.useEffect(() => {
 		if (isAuthenticated && user) {
@@ -76,6 +75,10 @@ const Home = () => {
 	React.useEffect(() => {
 		getPosts();
 	}, []);
+
+	React.useEffect(() => {
+		console.log('posts', data);
+	}, [data]);
 
 	const handleSearch = () => {
 		getPosts({ variables: { searchString: searchString } });
